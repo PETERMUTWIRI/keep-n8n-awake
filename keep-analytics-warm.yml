@@ -1,0 +1,14 @@
+name: Ping analytics service every 10 min
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'   # UTC
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -sf https://mutsynchub.onrender.com/health || true
+          curl -sf https://mutsynchub.onrender.com/api/v1/health || true   # if you have one
