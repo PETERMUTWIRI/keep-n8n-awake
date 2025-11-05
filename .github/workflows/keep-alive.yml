@@ -1,0 +1,12 @@
+name: Ping n8n every 10 min
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'   # UTC
+  workflow_dispatch:         # manual button
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -sf https://n8n-bridge.onrender.com/healthz || true
